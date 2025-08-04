@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{% block title %}Event Management System{% endblock %}</title>
+  <link href="{% static 'css/output.css' %}" rel="stylesheet" />
+</head>
+<body class="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 min-h-screen text-gray-900">
+
+  <nav class="bg-white shadow p-4 flex justify-between items-center">
+    <div class="text-2xl font-bold text-indigo-700">Event Management</div>
+    <div class="space-x-6">
+      <a href="{% url 'event_list' %}" class="text-indigo-600 hover:underline">Events</a>
+      <a href="{% url 'participant_list' %}" class="text-indigo-600 hover:underline">Participants</a>
+      <a href="{% url 'category_list' %}" class="text-indigo-600 hover:underline">Categories</a>
+      <a href="{% url 'dashboard' %}" class="text-indigo-600 hover:underline">Dashboard</a>
+    </div>
+  </nav>
+
+  <main class="max-w-5xl mx-auto p-8 bg-white rounded shadow mt-8">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="mt-12 p-4 text-center text-white">
+    &copy; Safayet Ullah | Southeast University, Department of CSE
+  </footer>
+
+</body>
+</html>

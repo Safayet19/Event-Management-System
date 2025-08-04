@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}{{ event.name }}{% endblock %}
+{% block content %}
+  <a href="{% url 'event_list' %}" class="text-indigo-600 underline mb-6 inline-block">&larr; Back to Events</a>
+
+  <h1 class="text-4xl font-extrabold mb-4 text-indigo-700">{{ event.name }}</h1>
+
+  <div class="mb-6 space-y-2 text-gray-700">
+    <p><strong>Category:</strong> {{ event.category.name }}</p>
+    <p><strong>Date & Time:</strong> {{ event.date }} at {{ event.time }}</p>
+    <p><strong>Location:</strong> {{ event.location }}</p>
+  </div>
+
+  <p class="mb-8 text-lg leading-relaxed">{{ event.description }}</p>
+
+  <h2 class="text-2xl font-semibold mb-4 text-indigo-700">Participants ({{ participants|length }})</h2>
+  <ul class="list-disc list-inside text-gray-800 space-y-1">
+    {% for participant in participants %}
+      <li>{{ participant.name }} — <a href="mailto:{{ participant.email }}" class="text-indigo-600 hover:underline">{{ participant.email }}</a></li>
+    {% empty %}
+      <li>No participants registered yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

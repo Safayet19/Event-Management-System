@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+  <h1 class="text-3xl font-bold mb-6 text-indigo-700">{{ title }}</h1>
+  <form method="post" class="space-y-6 max-w-lg">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700 transition">Save Event</button>
+  </form>
+  <a href="{% url 'event_list' %}" class="mt-6 inline-block text-indigo-600 hover:underline">&larr; Back to Events</a>
+{% endblock %}

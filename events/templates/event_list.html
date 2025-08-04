@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Events List{% endblock %}
+{% block content %}
+  <h1 class="text-4xl font-extrabold mb-8 text-indigo-700">Events</h1>
+
+  <form method="get" class="mb-6 flex space-x-4">
+    <input name="q" value="{{ request.GET.q }}" placeholder="Search by name or location" 
+      class="flex-grow border border-indigo-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+    <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700 transition">Search</button>
+  </form>
+
+  <ul class="space-y-6">
+    {% for event in events %}
+    <li class="bg-indigo-50 rounded-lg shadow p-6 hover:shadow-lg transition">
+      <h2 class="text-2xl font-semibold text-indigo-900">{{ event.name }}</h2>
+      <p class="mt-2 text-indigo-700">{{ event.description|truncatechars:100 }}</p>
+      <p class="mt-1 font-medium">Category: <span class="text-indigo-600">{{ event.category.name }}</span></p>
+      <p class="mt-1 font-medium">Participants: <span class="text-indigo-600">{{ event.participant_count }}</span></p>
+      <a href="{% url 'event_detail' event.id %}" class="inline-block mt-3 text-indigo-700 hover:underline font-semibold">View Details</a>
+    </li>
+    {% empty %}
+    <li class="text-gray-600 italic">No events found.</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'event_create' %}" class="mt-8 inline-block bg-green-500 text-white px-6 py-3 rounded shadow hover:bg-green-600 transition">
+    + Add New Event
+  </a>
+{% endblock %}
