@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ['https://*onrender.com' , 'http://127.0.0.1:8000']
 
-AUTH_USER_MODEL = 'users.CustomUser'
+# AUTH_USER_MODEL = 'users.CustomUser'
 
 
 # Application definition
@@ -84,17 +84,25 @@ WSGI_APPLICATION = 'event_management.wsgi.application'
 # }
 
 # Postgres
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'event_management',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
-        'PORT': '5432'
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'event_management',
+#         'USER': 'postgres',
+#         'PASSWORD': '1234',
+#         'HOST': 'localhost',
+#         'PORT': '5432'
+#     }
+# }
+# Import the dj-database-url package at the beginning of the file
+import dj_database_url
 
+DATABASES = {
+    'default': dj_database_url.config(
+        default='postgresql://event_manage_db_izqi_user:SZRMlVsvXQNXcC48a3TicdgdS7nzDbhO@dpg-d28m2fruibrs73dm3tv0-a.oregon-postgres.render.com/event_manage_db_izqi',
+        conn_max_age=600
+    )
+}
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
