@@ -26,7 +26,10 @@ SECRET_KEY = 'django-insecure-$!r6)1t4$*uphx6@a151+b5ahndf2crdg*!#lc23s$xc_(oh3&
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://*onrender.com' , 'http://127.0.0.1:8000']
+CSRF_TRUSTED_ORIGINS = [
+    'https://event-management-system-f48s.onrender.com',
+]
+
 
 # AUTH_USER_MODEL = 'users.CustomUser'
 
